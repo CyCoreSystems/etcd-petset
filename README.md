@@ -16,4 +16,4 @@ Of note:
     something apparently gets confused or crossed, and the `PetSet` unit names
     don't get defined, either.
 
-
+![etcd petset](etcd-petset.png)
