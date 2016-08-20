@@ -16,6 +16,16 @@ spec:
 
 ---
 
+apiVersion: v1
+kind: Secret
+metadata:
+  name: etcd
+data:
+  # create by `echo -n "MyEtcdToken" | base64"
+  token: TXlFdGNkVG9rZW4=
+
+---
+
 apiVersion: apps/v1alpha1
 kind: PetSet
 metadata:
@@ -46,6 +56,11 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
+            - name: ETCD_INITIAL_CLUSTER_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: etcd
+                  key: token
             - name: ETCD_DATA_DIR
               value: "/data/etcd"
             - name: ETCD_INITIAL_CLUSTER
